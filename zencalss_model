@@ -1,0 +1,60 @@
+create table User(
+userid int primary key auto_increment,
+username varchar (25) not null,
+useremail varchar(10)not null,
+usermobile varchar(10)
+);
+create table Course(
+course_id int primary key auto_increment,
+userid int,
+course_name varchar (25),
+course_duration varchar(50),
+course_fees varchar(25),
+foreign key (userid) references User (userid)
+);
+create table Admission(
+userid int,
+course_id int,
+admission_fees varchar (25),
+foreign key (userid) references User (userid),
+foreign key (course_id) references Course (course_id)
+);
+create table Codekata(
+userid int,
+solved_problems varchar (25),
+foreign key (userid) references User (userid)
+);
+create table Mentor(
+userid int,
+course_id int,
+mentor_name varchar (25),
+foreign key (userid) references User (userid),
+foreign key (course_id) references Course (course_id)
+);
+create table Studentattendance(
+userid int,
+attendance_id int,
+attendance_date datetime default now(),
+status boolean default true,
+foreign key (userid) references User (userid)
+);
+create table task(
+userid int,
+submited_task varchar(25) not null,
+task_mark varchar (25),
+foreign key (userid) references User (userid)
+);
+create table leaderboard(
+userid int,
+course_id int,
+barch varchar (25) not null,
+submited_task varchar (25) not null,
+foreign key (userid) references User (userid),
+foreign key (course_id) references Course (course_id)
+);
+create table queries(
+userid int,
+topics varchar (2000),
+reasons_queries varchar (2550),
+foreign key (userid) references User (userid)
+);
